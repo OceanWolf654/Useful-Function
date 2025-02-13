@@ -10,7 +10,22 @@
         window.location.href = "useful functions.html";
     </script>
 </head>
+<script>
+    window.onload = function() {
+        document.getElementById("preloader").classList.add("fade-out");
+        setTimeout(() => {
+            document.getElementById("preloader").style.display = "none";
+        }, 500);
+    };
+</script>
 <body>
+    <!-- Loading Screen -->
+<div id="preloader">
+    <div class="loader-content">
+        <h1>Nexus Hub</h1>
+        <div class="spinner"></div>
+    </div>
+</div>
     <p>If you're not redirected, <a href="useful functions.html">click here</a>.</p>
 </body>
 </html>
