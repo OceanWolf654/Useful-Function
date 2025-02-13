@@ -8,7 +8,7 @@
     <title>Nexus Hub</title>
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Full-Screen Loading Screen -->
     <div id="preloader">
         <div class="loader-content">
             <h1>Nexus Hub</h1>
@@ -18,7 +18,7 @@
 
     <p>If you're not redirected, <a href="useful functions.html">click here</a>.</p>
 
-    <!-- Fix: Move JavaScript to the bottom -->
+    <!-- JavaScript for Preloader -->
     <script>
         window.onload = function () {
             setTimeout(() => {
@@ -27,7 +27,7 @@
                     document.getElementById("preloader").style.display = "none";
                     window.location.href = "useful functions.html"; // Redirect AFTER fade-out
                 }, 500);
-            }, 500); // Keeps preloader visible only for a short moment
+            }, 2000); // Ensures preloader stays visible briefly
         };
     </script>
 </body>
