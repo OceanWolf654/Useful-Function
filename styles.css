@@ -9,8 +9,7 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 
-/* Full-Screen Preloader */
-/* Full-Screen Preloader */
+/* Full-Screen Preloader (Better Centering) */
 #preloader {
     position: fixed;
     top: 0;
@@ -21,27 +20,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    text-align: center;
     z-index: 9999;
     transition: opacity 0.5s ease-in-out;
-    flex-direction: column; /* Ensures vertical alignment */
-    text-align: center;
 }
 
-/* Loader Content */
+/* Loader Content (Ensures Centering) */
 .loader-content {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers everything inside */
+    align-items: center;
     justify-content: center;
-}
-
-/* Large Text */
-.loader-content h1 {
-    font-size: 50px;
-    font-weight: bold;
-    color: #ff416c;
-    margin-bottom: 20px;
-    animation: fadeText 1s ease-in-out infinite alternate;
+    width: 100%;
 }
 
 /* Large Spinner */
@@ -52,9 +43,12 @@ body {
     border-top: 12px solid #ff416c;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 20px; /* Adjusts position slightly */
+}
+
+/* Ensures Text & Spinner Are Centered */
+h1 {
+    margin-bottom: 15px;
 }
 
 
