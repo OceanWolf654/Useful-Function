@@ -41,10 +41,10 @@ body {
 
 /* Large Spinner */
 .spinner {
-    width: 100px;
-    height: 100px;
-    border: 10px solid rgba(0, 0, 0, 0.1);
-    border-top: 10px solid #ff416c;
+    width: 120px;
+    height: 120px;
+    border: 12px solid rgba(0, 0, 0, 0.1);
+    border-top: 12px solid #ff416c;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -68,16 +68,16 @@ body {
 
 /* BUTTON STYLES */
 button {
-    padding: 12px 20px;
-    font-size: 18px;
+    padding: 14px 24px;
+    font-size: 20px;
     font-weight: bold;
     color: white;
     background: #ff416c;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Hover Effect */
@@ -91,16 +91,25 @@ button:hover {
 /* Click Animation */
 button:active {
     transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Pulse Glow Effect */
 @keyframes pulse {
-    from { box-shadow: 0 0 10px rgba(255, 75, 43, 0.6); }
-    to { box-shadow: 0 0 20px rgba(255, 75, 43, 1); }
+    from {
+        box-shadow: 0 0 10px rgba(255, 75, 43, 0.6);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 75, 43, 1);
+    }
 }
 
 /* Smooth Page Transitions */
 a, button {
     transition: all 0.3s ease-in-out;
+}
+
+/* Fade out effect when navigating */
+body.fade-out {
+    opacity: 0;
 }
