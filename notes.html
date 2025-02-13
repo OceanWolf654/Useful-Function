@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        textarea, button { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Notes</h1>
+    <textarea id="note" placeholder="Write your note here..."></textarea><br>
+    <button onclick="saveNote()">Save Note</button>
+    <p id="savedNote"></p>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        function saveNote() {
+            let note = document.getElementById('note').value;
+            localStorage.setItem("savedNote", note);
+            document.getElementById('savedNote').innerText = "Note saved!";
+        }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>

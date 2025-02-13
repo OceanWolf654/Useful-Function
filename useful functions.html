@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Useful Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Useful Everyday Functions</h1>
+    <p>Click a button to open the function page.</p>
+    
+    <div id="buttons">
+        <button onclick="openFunction('function pages.html?func=calculator')">Calculator</button>
+        <button onclick="openFunction('function pages.html?func=todo')">To-Do List</button>
+        <button onclick="openFunction('function pages.html?func=timer')">Timer</button>
+        <button onclick="openFunction('function pages.html?func=stopwatch')">Stopwatch</button>
+        <button onclick="openFunction('function pages.html?func=unitConverter')">Unit Converter</button>
+        <button onclick="openFunction('function pages.html?func=bmiCalculator')">BMI Calculator</button>
+        <button onclick="openFunction('function pages.html?func=weather')">Weather Info</button>
+        <button onclick="openFunction('function pages.html?func=dictionary')">Dictionary</button>
+        <button onclick="openFunction('function pages.html?func=translator')">Translator</button>
+        <button onclick="openFunction('function pages.html?func=notes')">Notes</button>
+        <button onclick="openFunction('function pages.html?func=calendar')">Calendar</button>
+        <button onclick="openFunction('function pages.html?func=currencyConverter')">Currency Converter</button>
+        <button onclick="openFunction('function pages.html?func=randomNumber')">Random Number Generator</button>
+        <button onclick="openFunction('function pages.html?func=passwordGenerator')">Password Generator</button>
+        <button onclick="openFunction('function pages.html?func=flashlight')">Flashlight</button>
+        <button onclick="openFunction('function pages.html?func=compass')">Compass</button>
+        <button onclick="openFunction('function pages.html?func=qrScanner')">QR Code Scanner</button>
+        <button onclick="openFunction('function pages.html?func=expenseTracker')">Expense Tracker</button>
+        <button onclick="openFunction('function pages.html?func=reminder')">Reminder</button>
+        <button onclick="openFunction('function pages.html?func=motivationalQuote')">Motivational Quote</button>
+    </div>
+    
+    <script>
+        function openFunction(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

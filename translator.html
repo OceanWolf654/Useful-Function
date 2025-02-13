@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        textarea, button, select { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Translator</h1>
+    <textarea id="text" placeholder="Enter text"></textarea><br>
+    <select id="language">
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="hi">Hindi</option>
+        <option value="ml">Malayalam</option>
+    </select>
+    <button onclick="translateText()">Translate</button>
+    <p id="translationResult"></p>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        async function translateText() {
+            let text = document.getElementById('text').value;
+            let lang = document.getElementById('language').value;
+            if (text) {
+                try {
+                    let response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${lang}`);
+                    let data = await response.json();
+                    document.getElementById('translationResult').innerText = `Translation: ${data.responseData.translatedText}`;
+                } catch (error) {
+                    document.getElementById('translationResult').innerText = "Error translating text.";
+                }
+            } else {
+                document.getElementById('translationResult').innerText = "Please enter text.";
+            }
+        }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>

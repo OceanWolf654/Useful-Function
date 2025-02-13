@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loading...</h1>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const func = params.get('func');
+
+        if (func) {
+            window.location.href = func + ".html"; // Redirect to the corresponding function page
+        } else {
+            document.body.innerHTML = "<h1>Function not found.</h1><a href='useful functions.html'>Go Back</a>";
+        }
+    </script>
+</body>
+</html>

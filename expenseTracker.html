@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <input type="text" id="expenseName" placeholder="Expense name">
+    <input type="number" id="expenseAmount" placeholder="Amount">
+    <button onclick="addExpense()">Add Expense</button>
+    <ul id="expenseList"></ul>
+    <p>Total: <span id="totalAmount">0</span></p>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        let total = 0;
+        function addExpense() {
+            let name = document.getElementById('expenseName').value;
+            let amount = parseFloat(document.getElementById('expenseAmount').value);
+            if (name && !isNaN(amount)) {
+                total += amount;
+                let li = document.createElement('li');
+                li.innerText = `${name}: ₹${amount.toFixed(2)}`;
+                document.getElementById('expenseList').appendChild(li);
+                document.getElementById('totalAmount').innerText = total.toFixed(2);
+                document.getElementById('expenseName').value = '';
+                document.getElementById('expenseAmount').value = '';
+            }
+        }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, select, button { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Unit Converter</h1>
+    <input type="number" id="inputValue" placeholder="Enter value">
+    <select id="unitType">
+        <option value="kmToMiles">Kilometers to Miles</option>
+        <option value="milesToKm">Miles to Kilometers</option>
+    </select>
+    <button onclick="convert()">Convert</button>
+    <p id="conversionResult"></p>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        function convert() {
+            let value = parseFloat(document.getElementById('inputValue').value);
+            let unit = document.getElementById('unitType').value;
+            let result = unit === 'kmToMiles' ? value * 0.621371 : value * 1.60934;
+            document.getElementById('conversionResult').innerText = `Result: ${result.toFixed(2)}`;
+        }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>

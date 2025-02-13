@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Dictionary</h1>
+    <input type="text" id="word" placeholder="Enter word">
+    <button onclick="searchWord()">Search</button>
+    <p id="definitionResult"></p>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        async function searchWord() {
+            let word = document.getElementById('word').value;
+            if (word) {
+                try {
+                    let response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+                    let data = await response.json();
+                    if (data.title !== "No Definitions Found") {
+                        document.getElementById('definitionResult').innerText = `Definition: ${data[0].meanings[0].definitions[0].definition}`;
+                    } else {
+                        document.getElementById('definitionResult').innerText = "Word not found.";
+                    }
+                } catch (error) {
+                    document.getElementById('definitionResult').innerText = "Error fetching definition.";
+                }
+            } else {
+                document.getElementById('definitionResult').innerText = "Please enter a word.";
+            }
+        }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>

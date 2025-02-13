@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminder</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Reminder</h1>
+    <input type="text" id="reminderText" placeholder="Reminder message">
+    <input type="datetime-local" id="reminderTime">
+    <button onclick="setReminder()">Set Reminder</button>
+    <p id="reminderStatus"></p>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        function setReminder() {
+            let message = document.getElementById('reminderText').value;
+            let time = new Date(document.getElementById('reminderTime').value).getTime();
+            let now = new Date().getTime();
+
+            if (message && time > now) {
+                let timeout = time - now;
+                setTimeout(() => alert(`Reminder: ${message}`), timeout);
+                document.getElementById('reminderStatus').innerText = "Reminder set!";
+            } else {
+                document.getElementById('reminderStatus').innerText = "Enter a valid reminder.";
+            }
+        }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>

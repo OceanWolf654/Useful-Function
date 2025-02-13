@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        button { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Stopwatch</h1>
+    <p id="stopwatchDisplay">0:00</p>
+    <button onclick="startStopwatch()">Start</button>
+    <button onclick="stopStopwatch()">Stop</button>
+    <button onclick="resetStopwatch()">Reset</button>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        let time = 0, interval;
+        function updateDisplay() {
+            document.getElementById('stopwatchDisplay').innerText = `${Math.floor(time / 60)}:${(time % 60).toString().padStart(2, '0')}`;
+        }
+        function startStopwatch() {
+            if (!interval) interval = setInterval(() => { time++; updateDisplay(); }, 1000);
+        }
+        function stopStopwatch() { clearInterval(interval); interval = null; }
+        function resetStopwatch() { time = 0; updateDisplay(); }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>

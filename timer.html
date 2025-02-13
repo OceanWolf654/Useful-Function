@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Timer</h1>
+    <input type="number" id="seconds" placeholder="Enter seconds">
+    <button onclick="startTimer()">Start Timer</button>
+    <p id="timerDisplay"></p>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        function startTimer() {
+            let seconds = parseInt(document.getElementById('seconds').value);
+            if (!isNaN(seconds)) {
+                let interval = setInterval(() => {
+                    document.getElementById('timerDisplay').innerText = seconds + ' seconds left';
+                    seconds--;
+                    if (seconds < 0) {
+                        clearInterval(interval);
+                        document.getElementById('timerDisplay').innerText = 'Time up!';
+                    }
+                }, 1000);
+            }
+        }
+        function goBack() {
+            window.location.href = 'useful functions.html';
+        }
+    </script>
+</body>
+</html>

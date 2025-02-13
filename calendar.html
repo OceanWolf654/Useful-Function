@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+    </style>
+</head>
+<body>
+    <h1>Calendar</h1>
+    <input type="date" id="calendar">
+    <button onclick="showDate()">Select Date</button>
+    <p id="dateResult"></p>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        function showDate() {
+            let date = document.getElementById('calendar').value;
+            document.getElementById('dateResult').innerText = date ? `Selected Date: ${date}` : "Please select a date.";
+        }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>

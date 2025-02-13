@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivational Quote</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+    </style>
+</head>
+<body>
+    <h1>Motivational Quote</h1>
+    <p id="quote">Click the button to get a quote.</p>
+    <button onclick="getQuote()">Get Quote</button>
+    <button onclick="goBack()">Back</button>
+
+    <script>
+        async function getQuote() {
+            try {
+                let response = await fetch('https://api.quotable.io/random');
+                let data = await response.json();
+                document.getElementById('quote').innerText = `"${data.content}" - ${data.author}`;
+            } catch (error) {
+                document.getElementById('quote').innerText = "Error fetching quote.";
+            }
+        }
+        function goBack() { window.location.href = 'useful functions.html'; }
+    </script>
+</body>
+</html>
