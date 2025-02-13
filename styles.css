@@ -110,10 +110,6 @@ body.fade-out {
     to { transform: rotate(360deg); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0.5; }
-    to { opacity: 1; }
-}
 
 /* Fade Out Effect */
 .fade-out {
