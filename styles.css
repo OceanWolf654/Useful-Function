@@ -65,3 +65,42 @@ body {
     opacity: 0;
     pointer-events: none;
 }
+
+/* BUTTON STYLES (Re-Added) */
+button {
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: #ff416c;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effect */
+button:hover {
+    background: #ff4b2b;
+    box-shadow: 0 0 15px rgba(255, 75, 43, 0.8);
+    transform: scale(1.1);
+    animation: pulse 0.5s infinite alternate;
+}
+
+/* Click Animation */
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Pulse Glow Effect */
+@keyframes pulse {
+    from { box-shadow: 0 0 10px rgba(255, 75, 43, 0.6); }
+    to { box-shadow: 0 0 20px rgba(255, 75, 43, 1); }
+}
+
+/* Smooth Page Transitions */
+a, button {
+    transition: all 0.3s ease-in-out;
+}
