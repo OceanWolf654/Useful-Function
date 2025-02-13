@@ -68,6 +68,16 @@ body {
 body.fade-out {
     opacity: 0;
 }
+/* Background */
+body {
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+    opacity: 1; /* Remove fade-in conflict */
+}
+
 /* Preloader Styles */
 #preloader {
     position: fixed;
@@ -91,7 +101,7 @@ body.fade-out {
     font-weight: bold;
     color: #ff416c;
     margin-bottom: 15px;
-    animation: fadeIn 1s ease-in-out infinite alternate;
+    animation: fadeText 1s ease-in-out infinite alternate;
 }
 
 /* Spinner Animation */
@@ -104,12 +114,16 @@ body.fade-out {
     animation: spin 1s linear infinite;
 }
 
-/* Animations */
+/* Keyframe Animations */
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
+@keyframes fadeText {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
 
 /* Fade Out Effect */
 .fade-out {

@@ -5,30 +5,30 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Useful Functions</title>
-    <script>
-        window.location.href = "useful functions.html";
-    </script>
+    <title>Nexus Hub</title>
 </head>
 <body>
     <!-- Loading Screen -->
-<div id="preloader">
-    <div class="loader-content">
-        <h1>Nexus Hub</h1>
-        <div class="spinner"></div>
+    <div id="preloader">
+        <div class="loader-content">
+            <h1>Nexus Hub</h1>
+            <div class="spinner"></div>
+        </div>
     </div>
-</div>
+
     <p>If you're not redirected, <a href="useful functions.html">click here</a>.</p>
+
+    <!-- Fix: Move JavaScript to the bottom -->
     <script>
-        window.onload = function() {
+        document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 document.getElementById("preloader").classList.add("fade-out");
                 setTimeout(() => {
                     document.getElementById("preloader").style.display = "none";
-                    window.location.href = "useful functions.html"; // Redirect after fade-out
+                    window.location.href = "useful functions.html"; // Redirect AFTER fade-out
                 }, 500);
-            }, 1000); // Keeps preloader visible for at least 1 second
-        };
-    </script>    
+            }, 2000); // Ensures the preloader is visible for at least 1 second
+        });
+    </script>
 </body>
 </html>
