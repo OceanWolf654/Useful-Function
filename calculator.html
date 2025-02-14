@@ -2,18 +2,26 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="styles.css">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <title>Enhanced Calculator</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        input, button { margin: 5px; padding: 10px; font-size: 16px; }
+        input, button, select { margin: 5px; padding: 10px; font-size: 16px; }
     </style>
 </head>
 <body>
-    <h1>Calculator</h1>
+    <h1>Enhanced Calculator</h1>
     <input type="number" id="num1" placeholder="Enter first number">
+    <select id="operation">
+        <option value="add">Addition (+)</option>
+        <option value="subtract">Subtraction (-)</option>
+        <option value="multiply">Multiplication (×)</option>
+        <option value="divide">Division (÷)</option>
+        <option value="exponent">Exponentiation (xʸ)</option>
+        <option value="sqrt">Square Root (√x)</option>
+        <option value="modulus">Modulus (%)</option>
+    </select>
     <input type="number" id="num2" placeholder="Enter second number">
     <button onclick="calculate()">Calculate</button>
     <p id="result"></p>
@@ -23,12 +31,38 @@
         function calculate() {
             let num1 = parseFloat(document.getElementById('num1').value);
             let num2 = parseFloat(document.getElementById('num2').value);
-            if (!isNaN(num1) && !isNaN(num2)) {
-                document.getElementById('result').innerText = 'Sum: ' + (num1 + num2);
+            let operation = document.getElementById('operation').value;
+            let result;
+            
+            if (operation === 'sqrt') {
+                if (!isNaN(num1)) {
+                    result = `√${num1} = ` + Math.sqrt(num1);
+                } else {
+                    result = 'Please enter a valid number for square root';
+                }
+            } else if (!isNaN(num1) && !isNaN(num2)) {
+                switch (operation) {
+                    case 'add': result = `${num1} + ${num2} = ` + (num1 + num2); break;
+                    case 'subtract': result = `${num1} - ${num2} = ` + (num1 - num2); break;
+                    case 'multiply': result = `${num1} × ${num2} = ` + (num1 * num2); break;
+                    case 'divide':
+                        if (num2 !== 0) {
+                            result = `${num1} ÷ ${num2} = ` + (num1 / num2);
+                        } else {
+                            result = 'Cannot divide by zero';
+                        }
+                        break;
+                    case 'exponent': result = `${num1}^${num2} = ` + Math.pow(num1, num2); break;
+                    case 'modulus': result = `${num1} % ${num2} = ` + (num1 % num2); break;
+                    default: result = 'Invalid operation';
+                }
             } else {
-                document.getElementById('result').innerText = 'Please enter valid numbers';
+                result = 'Please enter valid numbers';
             }
+            
+            document.getElementById('result').innerText = result;
         }
+        
         function goBack() {
             window.location.href = 'useful functions.html';
         }
