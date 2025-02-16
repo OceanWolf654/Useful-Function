@@ -4,37 +4,31 @@
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>Motivational Quote</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        input { width: 80%; padding: 10px; margin-bottom: 10px; }
-        button { padding: 10px 20px; cursor: pointer; }
-        #qrcode { margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>QR Code Generator</h1>
-    <input type="text" id="qrText" placeholder="Enter text or URL">
-    <button onclick="generateQR()">Generate</button>
-    <br>
-    <img id="qrcode" alt="QR Code will appear here">
-    <br>
+    <h1>Motivational Quote</h1>
+    <p id="quote">Click the button to get a quote.</p>
+    <button onclick="getQuote()">Get Quote</button>
     <button onclick="goBack()">Back</button>
 
     <script>
-        function generateQR() {
-            let qrText = document.getElementById("qrText").value;
-            if (qrText.trim() === "") {
-                alert("Please enter text or a URL");
-                return;
+        async function getQuote() {
+            try {
+                let response = await fetch('https://api.api-ninjas.com/v1/quotes?category=motivational', {
+                    headers: { 'X-Api-Key': 'MMmCjhHA37MInV68qlAIIg==3njuuQUBnXI3mZFF' } // Replace with your API key
+                });
+                let data = await response.json();
+                document.getElementById('quote').innerText = `"${data[0].quote}" - ${data[0].author}`;
+            } catch (error) {
+                document.getElementById('quote').innerText = "Error fetching quote.";
             }
-            let qrImage = document.getElementById("qrcode");
-            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${encodeURIComponent(qrText)}`;
         }
-
-        function goBack() {
-            window.location.href = 'useful functions.html';
-        }
+        
+        function goBack() { window.location.href = 'useful functions.html'; }
     </script>
 </body>
 </html>
