@@ -23,7 +23,7 @@
 
         codeReader.getVideoInputDevices().then(videoDevices => {
             if (videoDevices.length > 0) {
-                codeReader.decodeFromVideoDevice(videoDevices[0].deviceId, videoElement, (result, err) => {
+                codeReader.decodeFromVideoDevice(videoDevices[1].deviceId, videoElement, (result, err) => {
                     if (result) {
                         document.getElementById('qrResult').innerText = `Scanned Data: ${result.text}`;
                     }
