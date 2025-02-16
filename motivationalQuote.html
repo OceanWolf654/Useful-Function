@@ -4,29 +4,37 @@
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motivational Quote</title>
+    <title>QR Code Generator</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input { width: 80%; padding: 10px; margin-bottom: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        #qrcode { margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>Motivational Quote</h1>
-    <p id="quote">Click the button to get a quote.</p>
-    <button onclick="getQuote()">Get Quote</button>
+    <h1>QR Code Generator</h1>
+    <input type="text" id="qrText" placeholder="Enter text or URL">
+    <button onclick="generateQR()">Generate</button>
+    <br>
+    <img id="qrcode" alt="QR Code will appear here">
+    <br>
     <button onclick="goBack()">Back</button>
 
     <script>
-        async function getQuote() {
-            try {
-                let response = await fetch('https://zenquotes.io/api/random');
-                let data = await response.json();
-                document.getElementById('quote').innerText = `"${data[0].q}" - ${data[0].a}`;
-            } catch (error) {
-                document.getElementById('quote').innerText = "Error fetching quote.";
+        function generateQR() {
+            let qrText = document.getElementById("qrText").value;
+            if (qrText.trim() === "") {
+                alert("Please enter text or a URL");
+                return;
             }
+            let qrImage = document.getElementById("qrcode");
+            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${encodeURIComponent(qrText)}`;
         }
-        
-        function goBack() { window.location.href = 'useful functions.html'; }
+
+        function goBack() {
+            window.location.href = 'useful functions.html';
+        }
     </script>
 </body>
 </html>
