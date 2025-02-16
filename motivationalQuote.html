@@ -18,13 +18,12 @@
     <script>
         async function getQuote() {
             try {
-                let response = await fetch('https://api.api-ninjas.com/v1/quotes?category=motivational', {
-                    headers: { 'X-Api-Key': 'MMmCjhHA37MInV68qlAIIg==3njuuQUBnXI3mZFF' } // Replace with your API key
-                });
+                let response = await fetch('https://goquotes-api.herokuapp.com/api/v1/random?type=motivation');
                 let data = await response.json();
-                document.getElementById('quote').innerText = `"${data[0].quote}" - ${data[0].author}`;
+                document.getElementById('quote').innerText = `"${data.quotes[0].text}" - ${data.quotes[0].author}`;
             } catch (error) {
                 document.getElementById('quote').innerText = "Error fetching quote.";
+                console.error(error);
             }
         }
         
