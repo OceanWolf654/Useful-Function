@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Scanner</title>
-    <script src="https://cdn.jsdelivr.net/npm/@zxing/browser@latest"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
         video { width: 80%; border: 2px solid black; }
@@ -13,28 +13,26 @@
 </head>
 <body>
     <h1>QR Code Scanner</h1>
-    <video id="video" autoplay></video>
+    <video id="preview"></video>
     <p id="qrResult"></p>
     <button onclick="goBack()">Back</button>
 
     <script>
-        const codeReader = new ZXing.BrowserQRCodeReader();
-        const videoElement = document.getElementById('video');
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
 
-        codeReader.getVideoInputDevices().then(videoDevices => {
-            if (videoDevices.length > 0) {
-                codeReader.decodeFromVideoDevice(videoDevices[0].deviceId, videoElement, (result, err) => {
-                    if (result) {
-                        document.getElementById('qrResult').innerText = `Scanned Data: ${result.text}`;
-                    }
-                    if (err) {
-                        console.warn(err);
-                    }
-                });
+        scanner.addListener('scan', function (content) {
+            document.getElementById('qrResult').innerText = `Scanned Data: ${content}`;
+        });
+
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]); // Use the first available camera
             } else {
-                alert("No camera found!");
+                alert('No cameras found.');
             }
-        }).catch(err => console.error(err));
+        }).catch(function (e) {
+            console.error(e);
+        });
 
         function goBack() { window.location.href = 'useful functions.html'; }
     </script>
