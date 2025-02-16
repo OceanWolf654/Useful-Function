@@ -2,33 +2,37 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="styles.css">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Scanner</title>
-    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        video { width: 80%; }
+        video { width: 80%; border: 2px solid black; }
     </style>
 </head>
 <body>
     <h1>QR Code Scanner</h1>
-    <div id="qr-reader" style="width: 300px;"></div>
+    <video id="preview"></video>
     <p id="qrResult"></p>
     <button onclick="goBack()">Back</button>
 
     <script>
-        function onScanSuccess(decodedText) {
-            document.getElementById('qrResult').innerText = `Scanned Data: ${decodedText}`;
-        }
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
 
-        function onScanError(errorMessage) {
-            console.warn(errorMessage);
-        }
+        scanner.addListener('scan', function (content) {
+            document.getElementById('qrResult').innerText = `Scanned Data: ${content}`;
+        });
 
-        let qrScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
-        qrScanner.render(onScanSuccess, onScanError);
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]); // Use the first available camera
+            } else {
+                alert('No cameras found.');
+            }
+        }).catch(function (e) {
+            console.error(e);
+        });
 
         function goBack() { window.location.href = 'useful functions.html'; }
     </script>
