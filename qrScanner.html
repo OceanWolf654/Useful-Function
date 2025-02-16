@@ -22,19 +22,20 @@
         const videoElement = document.getElementById('video');
 
         codeReader.getVideoInputDevices().then(videoDevices => {
-            if (videoDevices.length > 0) {
-                codeReader.decodeFromVideoDevice(videoDevices[1].deviceId, videoElement, (result, err) => {
-                    if (result) {
-                        document.getElementById('qrResult').innerText = `Scanned Data: ${result.text}`;
-                    }
-                    if (err) {
-                        console.warn(err);
-                    }
-                });
-            } else {
-                alert("No camera found!");
-            }
-        }).catch(err => console.error(err));
+    let rearCamera = videoDevices.find(device => device.label.toLowerCase().includes('back') || device.label.toLowerCase().includes('rear'));
+
+    if (!rearCamera) rearCamera = videoDevices[0]; // If no back camera is found, use the first available camera
+
+    codeReader.decodeFromVideoDevice(rearCamera.deviceId, videoElement, (result, err) => {
+        if (result) {
+            document.getElementById('qrResult').innerText = `Scanned Data: ${result.text}`;
+        }
+        if (err) {
+            console.warn(err);
+        }
+    });
+}).catch(err => console.error(err));
+
 
         function goBack() { window.location.href = 'useful functions.html'; }
     </script>
