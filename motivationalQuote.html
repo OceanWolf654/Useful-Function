@@ -12,15 +12,15 @@
 <body>
     <h1>Motivational Quote</h1>
     <p id="quote">Click the button to get a quote.</p>
-    <button onclick="getQuote()">Get Quote</button>
+    <button onclick="getQuote()">Get an Inspiring Quote</button>
     <button onclick="goBack()">Back</button>
 
     <script>
         async function getQuote() {
             try {
-                let response = await fetch('https://goquotes-api.herokuapp.com/api/v1/random?type=motivation');
+                let response = await fetch('https://api.favqs.com/qotd');
                 let data = await response.json();
-                document.getElementById('quote').innerText = `"${data.quotes[0].text}" - ${data.quotes[0].author}`;
+                document.getElementById('quote').innerText = `"${data.quote.body}" - ${data.quote.author}`;
             } catch (error) {
                 document.getElementById('quote').innerText = "Error fetching quote.";
                 console.error(error);
